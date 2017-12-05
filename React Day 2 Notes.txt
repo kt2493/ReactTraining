@@ -1,0 +1,756 @@
+React:
+
+//DOM Element Creation using javascript.
+
+/**
+ * Create DOM Node on fly and insert into existing dom tree.
+ */
+window.onload = component;
+
+function component() {
+    console.log('DOM is ready!');
+    //create element node
+    var greeter = document.createElement('h1');
+    console.dir(greeter);
+    //create text node
+    var message = document.createTextNode('Welcome to React!');
+    
+    //Link them
+    greeter.appendChild(message);
+
+    //insert into body flow,inside div
+    var container = document.getElementById('root');
+    container.appendChild(greeter);
+
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/**
+ * How to create DOM Element using React!
+ *  Steps:
+ *  >import react,react-dom  lib 
+ *  >DOM element creation steps
+ */
+import React from 'react';
+import { render } from 'react-dom';
+
+//create dom element
+ //create element node
+/*  var greeter = document.createElement('h1');
+ console.dir(greeter);
+ //create text node
+ var message = document.createTextNode('Welcome to React!');
+ 
+ //Link them
+ greeter.appendChild(message);
+
+ //insert into body flow,inside div
+ var container = document.getElementById('root');
+ container.appendChild(greeter) */;
+
+//const greeter = <h1>Welcome to React!</h1>;
+const greeter = React.createElement('h1', null, 'Welcome to React!');
+console.dir(greeter)
+
+render(greeter, document.getElementById('root'));
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+"React.Component"
+
+React.Component class:
+.....................
+>instance variables
+ props,state
+
+>instance methods
+render()
+componentWillMount()
+componentDidMount()
+componentWillReceiveProps()
+shouldComponentUpdate()
+componentWillUpdate()
+componentDidUpdate()
+componentWillUnmount()
+setState()
+forceUpdate()
+
+>static variables,methods
+defaultProps
+propTypes
+displayName
+/**
+ * Create Components:
+ * 1.variable pattern
+ * 2.function pattern
+ * 3.ES 6 Class pattern
+ * 
+ * Note: all patterns are use full.
+ */
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+/* //variable pattern
+const welcome = <h1>Welcome</h1>;
+const hai = <h1>Hai</h1>
+//render(welcome,document.getElementById('root'))
+render(welcome, root)//react will insert document.getElementById('root) after compilation
+//render(hai, root); */
+
+//Function:ES 5
+/* function Welcome() {
+    return (<h1>Welcome</h1>);
+} */
+//Function :ES6 Arrow function
+//const Welcome = () => <h1>Welcome</h1>;
+
+//Class
+class Welcome extends React.Component{
+ //override
+    render() {
+        return <h1>Welcome</h1>;
+   }   
+}
+ReactDOM.render(<Welcome />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Multiple Elements:
+..................
+/**
+ * Component composition:Component Composition.
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+//Layout
+const Header = () => (<div>
+ <h1>Header</h1>
+</div>);
+const Footer = () => (<div>
+    <h1>Footer</h1>
+</div>);
+const MainSection = () => (<div>
+    <h1>MainSection</h1>
+</div>);
+class Container extends Component{
+    render() {
+        return (
+            <div>
+                <Header />
+                <MainSection/> 
+                <Footer/>   
+            </div>    
+        );
+    }
+}
+render(<Container />, root);
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+HTML attributes List-JSX
+accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+charSet checked cite classID className colSpan cols content contentEditable
+contextMenu controls controlsList coords crossOrigin data dateTime default defer
+dir disabled download draggable encType form formAction formEncType formMethod
+formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+lang list loop low manifest marginHeight marginWidth max maxLength media
+mediaGroup method min minLength multiple muted name noValidate nonce open
+optimum pattern placeholder poster preload profile radioGroup readOnly rel
+required reversed role rowSpan rows sandbox scope scoped scrolling seamless
+selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
+style summary tabIndex target title type useMap value width wmode wrap
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+CSS :  bootstrap
+>npm install bootstrap --save
+
+>import 'bootstrap/dist/css/bootstrap.css';
+
+
+
+/**
+ * Create more elements
+ * Javascript and XML:
+ *    In react we write declarative code by mixing javascript
+ *  expressions and html markup
+ *  >javascript expressions play role of data place holders
+ *  >markup is represented as html tags.
+ *   HTML tags are reprsented by using basic "XML Parsing" rules:
+ *  >Every JSX dom tree must have one single parent.
+ *  >Every Opened element must be closed.
+ *    <Welcome></Welcome>
+ *   <Welcome/> - Self Closing
+ *  <hr/><br/><img/>
+ * 
+ * HTML Attributes:
+ *  <h1 class="heading"></h1> - htmlSyntax
+ *  <h1 className="heading"></h1> -JSX Syntax
+ * 
+ * Basic  HTML Attributes IN jsx:
+ * 
+ * 
+ * accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+charSet checked cite classID className colSpan cols content contentEditable
+contextMenu controls controlsList coords crossOrigin data dateTime default defer
+dir disabled download draggable encType form formAction formEncType formMethod
+formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+lang list loop low manifest marginHeight marginWidth max maxLength media
+mediaGroup method min minLength multiple muted name noValidate nonce open
+optimum pattern placeholder poster preload profile radioGroup readOnly rel
+required reversed role rowSpan rows sandbox scope scoped scrolling seamless
+selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
+style summary tabIndex target title type useMap value width wmode wrap
+ * 
+ */
+import React from 'react';
+import { render } from 'react-dom';
+import { Container } from './Container';
+import 'bootstrap/dist/css/bootstrap.css';
+
+render(<Container/>, root);
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+`import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+class Box extends Component {
+    render() {
+        return (
+            <div className="well">
+                <h1 ref="header"> BOX </h1>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        //console.log(this.refs.header.innerText);
+        console.dir(this.refs.header);
+        this.refs.header.addEventListener('mouseover', function (e) {
+            //console.log(e.type);
+            this.style.backgroundColor = "#DEF"
+        })
+    }
+
+}
+
+render(<Box />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Data Attributes:
+import React, { Component } from 'react';
+
+class Box extends Component {
+    render() {
+        return (
+            <div className="well">
+                <h1 ref="header" color="#DEF"> BOX </h1>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        //console.log(this.refs.header.innerText);
+        let color=this.refs.header.getAttribute('color');
+        this.refs.header.addEventListener('mouseover', function (e) {
+            //console.log(e.type);
+            this.style.backgroundColor = color || 'red';
+        })
+    }
+
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Data:
+
+
+class Employee extends Component{
+    render() {
+        //console.log(this.props);
+       
+        const { name, salary, status,skills } = this.props;
+        const { street, city } = this.props.address;
+
+
+        return (<div>
+            <h1>Employee Details</h1>
+            <div>
+                <span>Name : </span>
+                {/**{ this.props.name }**/}
+                {name}
+            </div>   
+            <div>
+                <span>Salary : </span>
+                {/**{this.props.salary}    **/}
+                {salary}
+            
+            </div> 
+            <div>
+                <span>Working Status : </span>
+                {/**{this.props.status ? "Working" : "Not Working"} **/}  
+                {status ? "Working" : "Not Working"}
+            </div> 
+            <div>
+                <span>Address : </span>
+                <p>
+                    {/**{this.props.address.street} **/}
+                    {street}
+                </p>
+
+                <p>{city}</p>
+            </div>   
+            <div>
+                <h1>Skills</h1>
+                <ul>
+                    {
+                        skills.map((skill, index) =>
+                        (<li key={index} >{skill}</li>))
+                    }    
+                </ul>    
+            </div>
+        </div>   
+         );
+    }
+}
+
+import React,{Component} from 'react';
+import { render } from 'react-dom';
+/**
+ * In class pattern props are availble via this
+ * In Functional pattern props are available as constructor  parameter
+ *  
+ */
+
+
+//Props and Functional Component:
+
+const Employee = ({name,salary,status,skills,address}) => {
+    //const { name, salary, status, skills } = props;
+    const { city, street } = address;
+    return(
+        <div>
+            <h1>Employee Details</h1>
+            <div>
+                <span>Name : </span>
+                {/**{ props.name }**/}
+                {name}
+            </div>
+            <div>
+                <span>Salary : </span>
+                {/**{this.props.salary}    **/}
+                {salary}
+    
+            </div>
+            <div>
+                <span>Working Status : </span>
+                {/**{this.props.status ? "Working" : "Not Working"} **/}
+                {status ? "Working" : "Not Working"}
+            </div>
+            <div>
+                <span>Address : </span>
+                <p>
+                    {/**{this.props.address.street} **/}
+                    {street}
+                </p>
+
+                <p>{city}</p>
+            </div>
+            <div>
+                <h1>Skills</h1>
+                <ul>
+                    {
+                        skills.map((skill, index) =>
+                            (<li key={index} >{skill}</li>))
+                    }
+                </ul>
+            </div>
+        </div>
+    );
+}    
+ 
+const salary = 1000;
+const workingStatus = true;
+const address = {
+    street: '10th street',
+    city: 'Chennai'
+};
+const skills = [
+    "Java",
+    "Angular",
+    "React",
+    "MongoDB",
+    "Restapi"
+];
+
+render(<Employee
+    status={workingStatus}
+    name="Subramanian"
+    salary={salary}
+    address={address}
+    skills = {skills}
+/>,
+    root);
+//////////////////////////////////////////////////////////////////
+
+
+import React,{Component} from 'react';
+import { render } from 'react-dom';
+/**
+ * In class pattern props are availble via this
+ * In Functional pattern props are available as constructor parameter
+ *  
+ */
+
+
+//Props and Functional Component:
+//Master Component
+const EmployeeMaster = props => {
+    return(
+        <div>
+            <h1>Employee Details</h1>
+            <EmployeeDetails {...props} />
+        </div>
+    );
+}    
+//Details Component
+const EmployeeDetails = (props) => {
+    const { name, salary, status, skills } = props;
+   const { city, street } = props.address;
+    return (
+     <div>
+        <div>
+        <span>Name : </span>
+        {/**{ props.name }**/}
+        {name}
+    </div>
+        <div>
+            <span>Salary : </span>
+            {/**{this.props.salary}    **/}
+            {salary}
+
+        </div>
+        <div>
+            <span>Working Status : </span>
+            {/**{this.props.status ? "Working" : "Not Working"} **/}
+            {status ? "Working" : "Not Working"}
+        </div>
+        <div>
+            <span>Address : </span>
+            <p>
+                {/**{this.props.address.street} **/}
+                {street}
+            </p>
+
+            <p>{city}</p>
+        </div>
+        <div>
+            <h1>Skills</h1>
+            <ul>
+                {
+                    skills.map((skill, index) =>
+                        (<li key={index} >{skill}</li>))
+                }
+            </ul>
+            </div>
+        </div>
+    );
+}
+ 
+
+
+const salary = 1000;
+const workingStatus = true;
+const address = {
+    street: '10th street',
+    city: 'Chennai'
+};
+const skills = [
+    "Java",
+    "Angular",
+    "React",
+    "MongoDB",
+    "Restapi"
+];
+
+render(<EmployeeMaster
+    status={workingStatus}
+    name="Subramanian"
+    salary={salary}
+    address={address}
+    skills = {skills}
+/>,
+    root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>npm install --save prop-types
+
+/**
+ * Default Props
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
+class Welcome extends Component{
+    render() {
+        const { name } = this.props;
+        return (<div>
+         <h1>{name}</h1>
+        </div>);
+    }
+}
+//component class has variable called defaultProps
+Welcome.defaultProps = {
+    name:'defaultName'
+}
+//setting property constraint : propTypes - in Component class which is static variable
+Welcome.propTypes = {
+    name:PropTypes.string
+}
+ 
+//render(<Welcome name='subramanian'  />, root); //no error
+render(<Welcome name={1222}  />, root); //no error
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/**
+ * Default Props
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
+class Welcome extends Component{
+    static defaultProps = {
+        name: 'defaultName'
+    };
+    render() {
+        const { name } = this.props;
+        return (<div>
+         <h1>{name}</h1>
+        </div>);
+    }
+}
+//component class has variable called defaultProps
+/* Welcome.defaultProps = {
+    name:'defaultName'
+} */
+//setting property constraint : propTypes - in Component class which is static variable
+Welcome.propTypes = {
+    name: PropTypes.string
+};
+ 
+//render(<Welcome name='subramanian'  />, root); //no error
+render(<Welcome name={1222}  />, root); //no error
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+state and events:
+
+state is also place holder for data.
+state is reprsented in side compoent.
+state is changed by events.
+
+Let's explore my state is
+
+counter =0
+  >event is associated with counter to increment
+  >event is fired,code gets executed,counter is changed from 
+   0 to 1
+  >counter=1 must be changed in real dom.
+  >calls render method---prepares vdom ---Take copy of last dom   
+   --->apply diff algorthim ----find differences---->start mutation --- Show the result in real dom ,render in browser.
+
+Events:
+>event name camelCased - onclick - onClick
+>event listener should be function reference
+  onclick="onCrement" - html
+  onClick = {onCrement}
+ Listerner is instance method inside component class
+ listener method may or may take SynEvent Object Reference
+ onCrement(evt){
+
+ }
+>event linstner must be bound with component class using function.bind method.
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+class Counter extends Component{
+  
+    state = {
+        counter:0
+    }
+    //attach onIncrment Counter Method to Button Object during
+    //runtime
+    onIncrement = this.onIncrement.bind(this);
+    //instance method
+    onIncrement() {
+        //this.state.counter = this.state.counter + 1;
+        this.setState({
+            counter: this.state.counter +1
+        });
+    }
+    render() {
+        console.log(this.state);
+        const { counter } = this.state;
+        return (
+        <div className="container">
+                <h1>Counter App </h1>
+                <h1>{counter} </h1>
+                <button onClick={this.onIncrement} >Increment</button>
+        </div>);
+    }
+}
+render(<Counter />, root);
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+React and DOM manipulation:
+...........................
+How to read dom node in react?
+>through synevent object
+>through ref
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+//State and dom manipulation
+class InputComponent extends Component{
+
+    state = {
+        name: 'Pete Hunt'
+    };
+    onUpdate = this.onUpdate.bind(this);
+
+    onUpdate(e) {
+        let nodeRef = e.target;
+        this.setState({ name: nodeRef.value });
+    }
+    //override componentDidMount
+    componentDidMount() {
+        //here you can do ajax setup,websocket setup,dom listerner setup...
+        const headerNode = this.refs.header;
+        let color=this.refs.header.getAttribute('mycolor');
+        //add Event Listener
+        headerNode.addEventListener('mouseover', function(e) {
+            this.style.backgroundColor = color || 'red';
+        });
+        headerNode.addEventListener('mouseleave', function(e) {
+            this.style.backgroundColor =  'yellow';
+        });
+    }
+
+    render() {
+        const { name } = this.state;
+        return (
+            <div className="container">
+                <h1  mycolor ref="header" className="well">{name}</h1>
+                <input onKeyUp={this.onUpdate} placeholder="name...."/>  
+            </div>
+        )
+    }
+}
+render(<InputComponent />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Dynamic Props: 
+ state of one Component(Parent Component) becomes props to another
+ Component(child).
+ 
+  The Component Owns state  - Statefull Component
+  The Component owns Props -  Stateless Component
+
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+class CounterApp extends Component{
+  
+    state = {
+        counter:0
+    }
+    //attach onIncrment Counter Method to Button Object during
+    //runtime
+    onIncrement = this.onIncrement.bind(this);
+    //instance method
+    onIncrement() {
+        //this.state.counter = this.state.counter + 1;
+        this.setState({
+            counter: this.state.counter +1
+        });
+    }
+    render() {
+        const { counter } = this.state;
+        return (
+        <div className="container">
+                <h1>Counter App </h1>
+                <Counter counter={counter}/>
+                <button onClick={this.onIncrement} >Increment</button>
+        </div>);
+    }
+}
+//Child Component :Statless
+/* class Counter extends Component{
+    render() {
+        const { counter } = this.props;
+        return (
+            <h1>{counter} </h1>
+        );
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+} */
+//stateless Component :Functions
+const Counter = ({ counter }) =>(<h1>{counter} </h1>);
+
+
+render(<CounterApp />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Web Service call and React:
+..........................
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+//State and dom manipulation
+class PhotoComponent extends Component{
+
+    state = {
+        photos: []
+    };
+    //override componentDidMount
+    componentDidMount() {
+        const url = 'https://jsonplaceholder.typicode.com/photos';
+        fetch(url)
+            .then(response => response.json())
+            .then(photos => {
+                this.setState({ photos: photos });
+            })
+            .catch(err => console.log(err));
+    }
+
+    render() {
+        const { photos } = this.state;
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="card">
+                        {
+                            photos.map((photo, index) => (
+                            <div className="card card-block" key={index}>
+                                    <span>{photo.title}</span>
+                            </div>)) 
+                        }
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+render(<PhotoComponent />, root);
