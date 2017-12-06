@@ -1,0 +1,1998 @@
+React:
+
+//DOM Element Creation using javascript.
+
+/**
+ * Create DOM Node on fly and insert into existing dom tree.
+ */
+window.onload = component;
+
+function component() {
+    console.log('DOM is ready!');
+    //create element node
+    var greeter = document.createElement('h1');
+    console.dir(greeter);
+    //create text node
+    var message = document.createTextNode('Welcome to React!');
+    
+    //Link them
+    greeter.appendChild(message);
+
+    //insert into body flow,inside div
+    var container = document.getElementById('root');
+    container.appendChild(greeter);
+
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/**
+ * How to create DOM Element using React!
+ *  Steps:
+ *  >import react,react-dom  lib 
+ *  >DOM element creation steps
+ */
+import React from 'react';
+import { render } from 'react-dom';
+
+//create dom element
+ //create element node
+/*  var greeter = document.createElement('h1');
+ console.dir(greeter);
+ //create text node
+ var message = document.createTextNode('Welcome to React!');
+ 
+ //Link them
+ greeter.appendChild(message);
+
+ //insert into body flow,inside div
+ var container = document.getElementById('root');
+ container.appendChild(greeter) */;
+
+//const greeter = <h1>Welcome to React!</h1>;
+const greeter = React.createElement('h1', null, 'Welcome to React!');
+console.dir(greeter)
+
+render(greeter, document.getElementById('root'));
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+"React.Component"
+
+React.Component class:
+.....................
+>instance variables
+ props,state
+
+>instance methods
+render()
+componentWillMount()
+componentDidMount()
+componentWillReceiveProps()
+shouldComponentUpdate()
+componentWillUpdate()
+componentDidUpdate()
+componentWillUnmount()
+setState()
+forceUpdate()
+
+>static variables,methods
+defaultProps
+propTypes
+displayName
+/**
+ * Create Components:
+ * 1.variable pattern
+ * 2.function pattern
+ * 3.ES 6 Class pattern
+ * 
+ * Note: all patterns are use full.
+ */
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+/* //variable pattern
+const welcome = <h1>Welcome</h1>;
+const hai = <h1>Hai</h1>
+//render(welcome,document.getElementById('root'))
+render(welcome, root)//react will insert document.getElementById('root) after compilation
+//render(hai, root); */
+
+//Function:ES 5
+/* function Welcome() {
+    return (<h1>Welcome</h1>);
+} */
+//Function :ES6 Arrow function
+//const Welcome = () => <h1>Welcome</h1>;
+
+//Class
+class Welcome extends React.Component{
+ //override
+    render() {
+        return <h1>Welcome</h1>;
+   }   
+}
+ReactDOM.render(<Welcome />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Multiple Elements:
+..................
+/**
+ * Component composition:Component Composition.
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+//Layout
+const Header = () => (<div>
+ <h1>Header</h1>
+</div>);
+const Footer = () => (<div>
+    <h1>Footer</h1>
+</div>);
+const MainSection = () => (<div>
+    <h1>MainSection</h1>
+</div>);
+class Container extends Component{
+    render() {
+        return (
+            <div>
+                <Header />
+                <MainSection/> 
+                <Footer/>   
+            </div>    
+        );
+    }
+}
+render(<Container />, root);
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+HTML attributes List-JSX
+accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+charSet checked cite classID className colSpan cols content contentEditable
+contextMenu controls controlsList coords crossOrigin data dateTime default defer
+dir disabled download draggable encType form formAction formEncType formMethod
+formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+lang list loop low manifest marginHeight marginWidth max maxLength media
+mediaGroup method min minLength multiple muted name noValidate nonce open
+optimum pattern placeholder poster preload profile radioGroup readOnly rel
+required reversed role rowSpan rows sandbox scope scoped scrolling seamless
+selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
+style summary tabIndex target title type useMap value width wmode wrap
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+CSS :  bootstrap
+>npm install bootstrap --save
+
+>import 'bootstrap/dist/css/bootstrap.css';
+
+
+
+/**
+ * Create more elements
+ * Javascript and XML:
+ *    In react we write declarative code by mixing javascript
+ *  expressions and html markup
+ *  >javascript expressions play role of data place holders
+ *  >markup is represented as html tags.
+ *   HTML tags are reprsented by using basic "XML Parsing" rules:
+ *  >Every JSX dom tree must have one single parent.
+ *  >Every Opened element must be closed.
+ *    <Welcome></Welcome>
+ *   <Welcome/> - Self Closing
+ *  <hr/><br/><img/>
+ * 
+ * HTML Attributes:
+ *  <h1 class="heading"></h1> - htmlSyntax
+ *  <h1 className="heading"></h1> -JSX Syntax
+ * 
+ * Basic  HTML Attributes IN jsx:
+ * 
+ * 
+ * accept acceptCharset accessKey action allowFullScreen allowTransparency alt
+async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
+charSet checked cite classID className colSpan cols content contentEditable
+contextMenu controls controlsList coords crossOrigin data dateTime default defer
+dir disabled download draggable encType form formAction formEncType formMethod
+formNoValidate formTarget frameBorder headers height hidden high href hrefLang
+htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
+lang list loop low manifest marginHeight marginWidth max maxLength media
+mediaGroup method min minLength multiple muted name noValidate nonce open
+optimum pattern placeholder poster preload profile radioGroup readOnly rel
+required reversed role rowSpan rows sandbox scope scoped scrolling seamless
+selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
+style summary tabIndex target title type useMap value width wmode wrap
+ * 
+ */
+import React from 'react';
+import { render } from 'react-dom';
+import { Container } from './Container';
+import 'bootstrap/dist/css/bootstrap.css';
+
+render(<Container/>, root);
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+`import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+class Box extends Component {
+    render() {
+        return (
+            <div className="well">
+                <h1 ref="header"> BOX </h1>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        //console.log(this.refs.header.innerText);
+        console.dir(this.refs.header);
+        this.refs.header.addEventListener('mouseover', function (e) {
+            //console.log(e.type);
+            this.style.backgroundColor = "#DEF"
+        })
+    }
+
+}
+
+render(<Box />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Data Attributes:
+import React, { Component } from 'react';
+
+class Box extends Component {
+    render() {
+        return (
+            <div className="well">
+                <h1 ref="header" color="#DEF"> BOX </h1>
+            </div>
+        );
+    }
+
+    componentDidMount() {
+        //console.log(this.refs.header.innerText);
+        let color=this.refs.header.getAttribute('color');
+        this.refs.header.addEventListener('mouseover', function (e) {
+            //console.log(e.type);
+            this.style.backgroundColor = color || 'red';
+        })
+    }
+
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Data:
+
+
+class Employee extends Component{
+    render() {
+        //console.log(this.props);
+       
+        const { name, salary, status,skills } = this.props;
+        const { street, city } = this.props.address;
+
+
+        return (<div>
+            <h1>Employee Details</h1>
+            <div>
+                <span>Name : </span>
+                {/**{ this.props.name }**/}
+                {name}
+            </div>   
+            <div>
+                <span>Salary : </span>
+                {/**{this.props.salary}    **/}
+                {salary}
+            
+            </div> 
+            <div>
+                <span>Working Status : </span>
+                {/**{this.props.status ? "Working" : "Not Working"} **/}  
+                {status ? "Working" : "Not Working"}
+            </div> 
+            <div>
+                <span>Address : </span>
+                <p>
+                    {/**{this.props.address.street} **/}
+                    {street}
+                </p>
+
+                <p>{city}</p>
+            </div>   
+            <div>
+                <h1>Skills</h1>
+                <ul>
+                    {
+                        skills.map((skill, index) =>
+                        (<li key={index} >{skill}</li>))
+                    }    
+                </ul>    
+            </div>
+        </div>   
+         );
+    }
+}
+
+import React,{Component} from 'react';
+import { render } from 'react-dom';
+/**
+ * In class pattern props are availble via this
+ * In Functional pattern props are available as constructor  parameter
+ *  
+ */
+
+
+//Props and Functional Component:
+
+const Employee = ({name,salary,status,skills,address}) => {
+    //const { name, salary, status, skills } = props;
+    const { city, street } = address;
+    return(
+        <div>
+            <h1>Employee Details</h1>
+            <div>
+                <span>Name : </span>
+                {/**{ props.name }**/}
+                {name}
+            </div>
+            <div>
+                <span>Salary : </span>
+                {/**{this.props.salary}    **/}
+                {salary}
+    
+            </div>
+            <div>
+                <span>Working Status : </span>
+                {/**{this.props.status ? "Working" : "Not Working"} **/}
+                {status ? "Working" : "Not Working"}
+            </div>
+            <div>
+                <span>Address : </span>
+                <p>
+                    {/**{this.props.address.street} **/}
+                    {street}
+                </p>
+
+                <p>{city}</p>
+            </div>
+            <div>
+                <h1>Skills</h1>
+                <ul>
+                    {
+                        skills.map((skill, index) =>
+                            (<li key={index} >{skill}</li>))
+                    }
+                </ul>
+            </div>
+        </div>
+    );
+}    
+ 
+const salary = 1000;
+const workingStatus = true;
+const address = {
+    street: '10th street',
+    city: 'Chennai'
+};
+const skills = [
+    "Java",
+    "Angular",
+    "React",
+    "MongoDB",
+    "Restapi"
+];
+
+render(<Employee
+    status={workingStatus}
+    name="Subramanian"
+    salary={salary}
+    address={address}
+    skills = {skills}
+/>,
+    root);
+//////////////////////////////////////////////////////////////////
+
+
+import React,{Component} from 'react';
+import { render } from 'react-dom';
+/**
+ * In class pattern props are availble via this
+ * In Functional pattern props are available as constructor parameter
+ *  
+ */
+
+
+//Props and Functional Component:
+//Master Component
+const EmployeeMaster = props => {
+    return(
+        <div>
+            <h1>Employee Details</h1>
+            <EmployeeDetails {...props} />
+        </div>
+    );
+}    
+//Details Component
+const EmployeeDetails = (props) => {
+    const { name, salary, status, skills } = props;
+   const { city, street } = props.address;
+    return (
+     <div>
+        <div>
+        <span>Name : </span>
+        {/**{ props.name }**/}
+        {name}
+    </div>
+        <div>
+            <span>Salary : </span>
+            {/**{this.props.salary}    **/}
+            {salary}
+
+        </div>
+        <div>
+            <span>Working Status : </span>
+            {/**{this.props.status ? "Working" : "Not Working"} **/}
+            {status ? "Working" : "Not Working"}
+        </div>
+        <div>
+            <span>Address : </span>
+            <p>
+                {/**{this.props.address.street} **/}
+                {street}
+            </p>
+
+            <p>{city}</p>
+        </div>
+        <div>
+            <h1>Skills</h1>
+            <ul>
+                {
+                    skills.map((skill, index) =>
+                        (<li key={index} >{skill}</li>))
+                }
+            </ul>
+            </div>
+        </div>
+    );
+}
+ 
+
+
+const salary = 1000;
+const workingStatus = true;
+const address = {
+    street: '10th street',
+    city: 'Chennai'
+};
+const skills = [
+    "Java",
+    "Angular",
+    "React",
+    "MongoDB",
+    "Restapi"
+];
+
+render(<EmployeeMaster
+    status={workingStatus}
+    name="Subramanian"
+    salary={salary}
+    address={address}
+    skills = {skills}
+/>,
+    root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>npm install --save prop-types
+
+/**
+ * Default Props
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
+class Welcome extends Component{
+    render() {
+        const { name } = this.props;
+        return (<div>
+         <h1>{name}</h1>
+        </div>);
+    }
+}
+//component class has variable called defaultProps
+Welcome.defaultProps = {
+    name:'defaultName'
+}
+//setting property constraint : propTypes - in Component class which is static variable
+Welcome.propTypes = {
+    name:PropTypes.string
+}
+ 
+//render(<Welcome name='subramanian'  />, root); //no error
+render(<Welcome name={1222}  />, root); //no error
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+/**
+ * Default Props
+ */
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+
+class Welcome extends Component{
+    static defaultProps = {
+        name: 'defaultName'
+    };
+    render() {
+        const { name } = this.props;
+        return (<div>
+         <h1>{name}</h1>
+        </div>);
+    }
+}
+//component class has variable called defaultProps
+/* Welcome.defaultProps = {
+    name:'defaultName'
+} */
+//setting property constraint : propTypes - in Component class which is static variable
+Welcome.propTypes = {
+    name: PropTypes.string
+};
+ 
+//render(<Welcome name='subramanian'  />, root); //no error
+render(<Welcome name={1222}  />, root); //no error
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+state and events:
+
+state is also place holder for data.
+state is reprsented in side compoent.
+state is changed by events.
+
+Let's explore my state is
+
+counter =0
+  >event is associated with counter to increment
+  >event is fired,code gets executed,counter is changed from 
+   0 to 1
+  >counter=1 must be changed in real dom.
+  >calls render method---prepares vdom ---Take copy of last dom   
+   --->apply diff algorthim ----find differences---->start mutation --- Show the result in real dom ,render in browser.
+
+Events:
+>event name camelCased - onclick - onClick
+>event listener should be function reference
+  onclick="onCrement" - html
+  onClick = {onCrement}
+ Listerner is instance method inside component class
+ listener method may or may take SynEvent Object Reference
+ onCrement(evt){
+
+ }
+>event linstner must be bound with component class using function.bind method.
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+class Counter extends Component{
+  
+    state = {
+        counter:0
+    }
+    //attach onIncrment Counter Method to Button Object during
+    //runtime
+    onIncrement = this.onIncrement.bind(this);
+    //instance method
+    onIncrement() {
+        //this.state.counter = this.state.counter + 1;
+        this.setState({
+            counter: this.state.counter +1
+        });
+    }
+    render() {
+        console.log(this.state);
+        const { counter } = this.state;
+        return (
+        <div className="container">
+                <h1>Counter App </h1>
+                <h1>{counter} </h1>
+                <button onClick={this.onIncrement} >Increment</button>
+        </div>);
+    }
+}
+render(<Counter />, root);
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+React and DOM manipulation:
+...........................
+How to read dom node in react?
+>through synevent object
+>through ref
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+//State and dom manipulation
+class InputComponent extends Component{
+
+    state = {
+        name: 'Pete Hunt'
+    };
+    onUpdate = this.onUpdate.bind(this);
+
+    onUpdate(e) {
+        let nodeRef = e.target;
+        this.setState({ name: nodeRef.value });
+    }
+    //override componentDidMount
+    componentDidMount() {
+        //here you can do ajax setup,websocket setup,dom listerner setup...
+        const headerNode = this.refs.header;
+        let color=this.refs.header.getAttribute('mycolor');
+        //add Event Listener
+        headerNode.addEventListener('mouseover', function(e) {
+            this.style.backgroundColor = color || 'red';
+        });
+        headerNode.addEventListener('mouseleave', function(e) {
+            this.style.backgroundColor =  'yellow';
+        });
+    }
+
+    render() {
+        const { name } = this.state;
+        return (
+            <div className="container">
+                <h1  mycolor ref="header" className="well">{name}</h1>
+                <input onKeyUp={this.onUpdate} placeholder="name...."/>  
+            </div>
+        )
+    }
+}
+render(<InputComponent />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Dynamic Props: 
+ state of one Component(Parent Component) becomes props to another
+ Component(child).
+ 
+  The Component Owns state  - Statefull Component
+  The Component owns Props -  Stateless Component
+
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+class CounterApp extends Component{
+  
+    state = {
+        counter:0
+    }
+    //attach onIncrment Counter Method to Button Object during
+    //runtime
+    onIncrement = this.onIncrement.bind(this);
+    //instance method
+    onIncrement() {
+        //this.state.counter = this.state.counter + 1;
+        this.setState({
+            counter: this.state.counter +1
+        });
+    }
+    render() {
+        const { counter } = this.state;
+        return (
+        <div className="container">
+                <h1>Counter App </h1>
+                <Counter counter={counter}/>
+                <button onClick={this.onIncrement} >Increment</button>
+        </div>);
+    }
+}
+//Child Component :Statless
+/* class Counter extends Component{
+    render() {
+        const { counter } = this.props;
+        return (
+            <h1>{counter} </h1>
+        );
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+} */
+//stateless Component :Functions
+const Counter = ({ counter }) =>(<h1>{counter} </h1>);
+
+
+render(<CounterApp />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Web Service call and React:
+..........................
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
+//State and dom manipulation
+class PhotoComponent extends Component{
+
+    state = {
+        photos: []
+    };
+    //override componentDidMount
+    componentDidMount() {
+        const url = 'https://jsonplaceholder.typicode.com/photos';
+        fetch(url)
+            .then(response => response.json())
+            .then(photos => {
+                this.setState({ photos: photos });
+            })
+            .catch(err => console.log(err));
+    }
+
+    render() {
+        const { photos } = this.state;
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="card">
+                        {
+                            photos.map((photo, index) => (
+                            <div className="card card-block" key={index}>
+                                    <span>{photo.title}</span>
+                            </div>)) 
+                        }
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+render(<PhotoComponent />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Redux:  - Red -Reducer + ux Flux
+
+What is Redux?
+Redux is state management lib.
+Redux is state layer.
+
+Redux:
+Redux takes state,change the state,returns new state
+
+(state(oldstate,Current),action) => next state(new State)
+Redux takes state ,manipulate,returns new state.
+
+Reducer is a function. Which is pure Function.
+Pure, impure functions
+
+Pure function:
+The function takes data(state),maniuplates data(state), returns
+new state(immutable state)
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+How react state information is isloated from Component ,move to
+Redux?
+
+Redux - State layer
+//Function  - Reducer -Pure Function
+
+function CounterReducer(counter=0,action){ + state = {counter:0}
+
+      //data manipulation logic: immutable logic
+     if(action.type === 'INCREEMNT'){
+         //write logic
+         //this.setState({counter:this.state.counter+1})-react //logic
+         return counter + 1;//immutable
+     }
+     else if(action.type==='DECREEMNT')
+     {
+         return counter - 1; //immutable
+     }
+     return counter; //new State or next State
+}
+
+//refactored code : using switch case
+function CounterReducer(counter=0,action){ + state = {counter:0}
+
+      //data manipulation logic: immutable logic
+ switch (action.type) {
+    case 'INCREMENT':
+        return counter + 1;
+        break;
+ case 'DECREEMNT':
+        return counter - 1;
+        break;
+    default:
+        return counter
+        break;
+}
+     
+
+}
+
+const action = {
+   type:'INCREMENT'
+}
+CounterReducer(null,action)
+
+const action = {
+   type:'DECREMENT'
+}
+CounterReducer(null,action)
+
+React - View Layer
+class Counter extends Component{
+   - state = {counter:0}
+
+   onUpdate(){
+    - this.setState({counter:this.state.counter+1})
+   }
+}
+>npm install redux --save
+
+Objects In Redux:
+store.
+How to create store Object?
+createStore() function creates store and returns in application
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//import redux
+
+/**
+ * steps:
+ * >import createStore
+ * >write reducer
+ * >create store object
+ * >Declare action objecT
+ * >Dispatch action
+ */
+
+import {
+    createStore
+} from 'redux';
+
+const CounterReducer = (counter = 0, action) => {
+
+    switch (action.type) {
+        case 'INCREMENT':
+            return counter + 1;
+            break;
+        case 'DECREMENT':
+            return counter - 1;
+            break;
+        default:
+            return counter; //default state    
+            break;
+    }
+};
+const store = createStore(CounterReducer);
+//action object
+const INCREMENT_ACTION = {
+    type: 'INCREMENT'
+    
+}
+//listerner api to read data from the store
+store.subscribe(() => {
+    console.log(` counter : ${store.getState()}`);
+});  
+//dispatch action
+//store.dispatch(INCREMENT_ACTION);//Dispatch calls reducer
+//store.dispatch(INCREMENT_ACTION);//Dispatch calls reducer
+setTimeout(() => store.dispatch(INCREMENT_ACTION), 1000);
+//reading data from the store
+//console.log(` counter : ${store.getState()}`); //state should be accessed dirctly
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Immutablity:
+/**
+ * Immutablity and Redux
+ * Redux:Goal to return always consistent data
+ * How to return consistent data?
+ *  Immutablity.
+ * Immutable Data Structure:
+ * 1.When ever any changes happen on literal object /array
+ *   we need to return immutable data.
+ * Guidelines to Create Immutable data Structure:
+ *...............................................
+
+ Array Immutations:
+
+//Immutabilty 
+
+//Array
+//1.Add new Item
+
+//Mutable List
+/*
+let list=[1,2,3];
+//Test whether list is mutable or not
+Object.freeze(list);
+list.push(4);
+console.log(list);
+                        
+console.log(list.concat([4]));
+
+//ES 7 Spread Operator
+let newArray = [...list, 4];
+console.log(newArray);
+
+//Immutabilty 
+
+//Array
+//1.Add new Item
+
+//Mutable List
+/*
+let list=[1,2,3];
+//Test whether list is mutable or not
+Object.freeze(list);
+list.push(4);
+console.log(list);
+*/
+//Immutable List
+let list =[1,2,3];
+Object.freeze(list);
+console.log(list.concat([4]));
+//ES 7 Spread Operator
+let newArray = [...list, 4];
+console.log(newArray);
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+Remove element:
+..............
+
+//Remove item
+//Using mutating method
+const removeCounter = (list, index) => {
+  list.splice(index, 1);
+  return list;
+}
+const listBefore = [1,2,3,4,5,6];
+Object.freeze(listBefore);
+let result = removeCounter(listBefore, 4);
+console.log(result);
+
+
+
+//Immutable method
+const removeCounter = (list, index) => {
+  // Old way: -ES 5
+  //Remove element based index and after removal merge begining and end of the array 
+  // and return new array.
+  //return list.slice(0, index).concat(list.slice(index + 1));
+  return [
+    ...list.slice(0, index),
+    ...list.slice(index + 1)
+  ];
+};
+  const listBefore = [15, 10, 20,78,8,90,67];
+
+  Object.freeze(listBefore);
+  let result = removeCounter(listBefore, 4);
+  console.log(result);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+When you update element:
+
+//How to change item in array
+//Array item increment - Mutating method 
+
+const incrementCounter = (list, index) => {
+  list[index]++;
+  return list;
+};
+let list = [10];
+Object.freeze(list);
+console.log(incrementCounter(list, 0));
+//Immutable way
+const incrementCounter = (list, index) => {
+  // Old way:
+  // return list
+  //  .slice(0, index)
+  //  .concat([list[index] + 1])
+  //  .concat(list.slice(index + 1));
+
+  // ES6 way:
+  return [
+    ...list.slice(0, index),
+    list[index] + 1,
+    ...list.slice(index + 1)
+  ];
+};
+let list = [10];
+Object.freeze(list);
+console.log(incrementCounter(list, 0));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Literal Object Mutatation:
+..........................
+
+const toggleTodo = (todo) => {
+  // Mutated version:
+  todo.completed = !todo.completed
+  return todo;
+}
+
+let data = {
+  id: 0,
+  text: 'Learn Redux',
+  completed: true 
+};
+Object.freeze(data);
+console.log(toggleTodo(data));
+
+
+/*
+const toggleTodo = (todo) => {
+  // Mutated version:
+  todo.completed = !todo.completed
+  todo.name = 'Subramanian';
+  return todo;
+}*/
+//Immutable version
+/**
+const toggleTodo = (todo) => {
+  return Object.assign({}, todo, {
+    completed: !todo.completed
+  });
+};
+ */
+const toggleTodo = (todo) => {
+  return {
+    ...todo,
+      completed: !todo.completed,
+      text:'Learn react with Redux'
+  };
+};
+
+let data = {
+  id: 0,
+  text: 'Learn Redux',
+  completed: true
+};
+Object.freeze(data);
+console.log(toggleTodo(data));
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+/Immutablity:
+/**
+ * Immutablity and Redux
+ * Redux:Goal to return always consistent data
+ * How to return consistent data?
+ *  Immutablity.
+ * Immutable Data Structure:
+ * 1.When ever any changes happen on literal object /array
+ *   we need to return immutable data.
+ * Guidelines to Create Immutable data Structure:
+ *...............................................
+
+ Array Immutations:
+
+//Immutabilty 
+
+//Array
+//1.Add new Item
+
+//Mutable List
+/*
+let list=[1,2,3];
+//Test whether list is mutable or not
+Object.freeze(list);
+list.push(4);
+console.log(list);
+                        
+console.log(list.concat([4]));
+
+//ES 7 Spread Operator
+let newArray = [...list, 4];
+console.log(newArray);
+
+//Immutabilty 
+
+//Array
+//1.Add new Item
+
+//Mutable List
+/*
+let list=[1,2,3];
+//Test whether list is mutable or not
+Object.freeze(list);
+list.push(4);
+console.log(list);
+*/
+//Immutable List
+let list =[1,2,3];
+Object.freeze(list);
+console.log(list.concat([4]));
+//ES 7 Spread Operator
+let newArray = [...list, 4];
+console.log(newArray);
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+Remove element:
+..............
+
+//Remove item
+//Using mutating method
+const removeCounter = (list, index) => {
+  list.splice(index, 1);
+  return list;
+}
+const listBefore = [1,2,3,4,5,6];
+Object.freeze(listBefore);
+let result = removeCounter(listBefore, 4);
+console.log(result);
+
+
+
+//Immutable method
+const removeCounter = (list, index) => {
+  // Old way: -ES 5
+  //Remove element based index and after removal merge begining and end of the array 
+  // and return new array.
+  //return list.slice(0, index).concat(list.slice(index + 1));
+  return [
+    ...list.slice(0, index),
+    ...list.slice(index + 1)
+  ];
+};
+  const listBefore = [15, 10, 20,78,8,90,67];
+
+  Object.freeze(listBefore);
+  let result = removeCounter(listBefore, 4);
+  console.log(result);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+When you update element:
+
+//How to change item in array
+//Array item increment - Mutating method 
+
+const incrementCounter = (list, index) => {
+  list[index]++;
+  return list;
+};
+let list = [10];
+Object.freeze(list);
+console.log(incrementCounter(list, 0));
+//Immutable way
+const incrementCounter = (list, index) => {
+  // Old way:
+  // return list
+  //  .slice(0, index)
+  //  .concat([list[index] + 1])
+  //  .concat(list.slice(index + 1));
+
+  // ES6 way:
+  return [
+    ...list.slice(0, index),
+    list[index] + 1,
+    ...list.slice(index + 1)
+  ];
+};
+let list = [10];
+Object.freeze(list);
+console.log(incrementCounter(list, 0));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Literal Object Mutatation:
+..........................
+
+const toggleTodo = (todo) => {
+  // Mutated version:
+  todo.completed = !todo.completed
+  return todo;
+}
+
+let data = {
+  id: 0,
+  text: 'Learn Redux',
+  completed: true 
+};
+Object.freeze(data);
+console.log(toggleTodo(data));
+
+
+/*
+const toggleTodo = (todo) => {
+  // Mutated version:
+  todo.completed = !todo.completed
+  todo.name = 'Subramanian';
+  return todo;
+}*/
+//Immutable version
+/**
+const toggleTodo = (todo) => {
+  return Object.assign({}, todo, {
+    completed: !todo.completed
+  });
+};
+ */
+const toggleTodo = (todo) => {
+  return {
+    ...todo,
+      completed: !todo.completed,
+      text:'Learn react with Redux'
+  };
+};
+
+let data = {
+  id: 0,
+  text: 'Learn Redux',
+  completed: true
+};
+Object.freeze(data);
+console.log(toggleTodo(data));
+
+import {
+    createStore
+} from 'redux'
+
+const EmployeeReducer = (empList = [], action) => {
+    switch (action.type) {
+        case 'ADD_EMPLOYEE':
+            return empList.concat(action.employee);
+        default:
+            return empList;
+    }
+};
+//create Store
+const store = createStore(EmployeeReducer);
+
+let employee = {
+    id: 1,
+    name: 'Subramnaian'
+};
+//Action
+const ADD_EMPLOYEE = {
+    type: 'ADD_EMPLOYEE',
+    employee
+};
+store.subscribe(() => {
+    console.log(store.getState());
+});
+store.dispatch(ADD_EMPLOYEE);
+
+employee = {
+    id: 2,
+    name: 'Ram'
+
+};
+store.dispatch({
+    type: 'ADD_EMPLOYEE',
+    //employee:employee - old version
+    employee //  es 6 object de structure
+});
+
+/**
+ * How to pass action object to reducer?
+ * >passing action object dirctly to reducer
+ *   store.dispatch({type:'ADD',employee});
+ *   store.dispatch(EMPLOYEE_ACTION);
+ * 
+ * >Action creator?
+ *    Just function which returns  Action object 
+ * 
+ */
+/* function ADD_EMPLOYEE_ACTIONCREATOR(employee) {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    }
+} */
+/* const ADD_EMPLOYEE_ACTIONCREATOR = employee => {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    };
+} */
+/* const ADD_EMPLOYEE_ACTIONCREATOR = employee => {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    };
+}  */
+const hello = () => 'Hello';
+const ADD_EMPLOYEE_ACTIONCREATOR = employee => ({
+    type: 'ADD_EMPLOYEE',
+    employee
+});
+
+
+store.dispatch(ADD_EMPLOYEE_ACTIONCREATOR({
+    id: 1,
+    name: 'Geetha'
+}));
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+What if i have multiple Reducer?
+import {coimbineReducers} from 'redux'
+
+rd1,rd2,rd3,rd4,rdn.................
+
+const rootReducer = coimbineReducers({key:value,key:value,});
+
+const rootReducer = coimbineReducers({TodoReducer:TodReducer,EmployeeReducer:EmployeeReducer,});
+
+const rootReducer = coimbineReducers({TodoReducer,EmployeeReducer}); // based es 6 object destructuring
+
+import {
+    createStore,
+    combineReducers
+} from 'redux'
+
+const EmployeeReducer = (empList = [], action) => {
+    switch (action.type) {
+        case 'ADD_EMPLOYEE':
+            return empList.concat(action.employee);
+        default:
+            return empList;
+    }
+};
+
+let todoState = {
+    id: 0,
+    text: 'Learn Redux',
+    completed: true
+};
+const ToggleTodoReducer = (todo = todoState, action) => {
+    switch (action.type) {
+        case 'TOGGLE_TODO':
+            return {
+                ...todo,
+                completed: !todo.completed,
+                text: action.text
+            };
+            break;
+
+        default:
+            return todo;
+            break;
+    }
+}
+//coimbine Employee,TODO
+const rootReducer = combineReducers({
+    ToggleTodoReducer,
+    EmployeeReducer
+});
+//create Store
+const store = createStore(rootReducer);
+
+let employee = {
+    id: 1,
+    name: 'Subramnaian'
+};
+//Action
+const ADD_EMPLOYEE = {
+    type: 'ADD_EMPLOYEE',
+    employee
+};
+store.subscribe(() => {
+    console.log(store.getState());
+});
+store.dispatch(ADD_EMPLOYEE);
+
+employee = {
+    id: 2,
+    name: 'Ram'
+
+};
+store.dispatch({
+    type: 'ADD_EMPLOYEE',
+    //employee:employee - old version
+    employee //  es 6 object de structure
+});
+
+/**
+ * How to pass action object to reducer?
+ * >passing action object dirctly to reducer
+ *   store.dispatch({type:'ADD',employee});
+ *   store.dispatch(EMPLOYEE_ACTION);
+ * 
+ * >Action creator?
+ *    Just function which returns  Action object 
+ * 
+ */
+/* function ADD_EMPLOYEE_ACTIONCREATOR(employee) {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    }
+} */
+/* const ADD_EMPLOYEE_ACTIONCREATOR = employee => {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    };
+} */
+/* const ADD_EMPLOYEE_ACTIONCREATOR = employee => {
+    return {
+        type: 'ADD_EMPLOYEE',
+        employee
+    };
+}  */
+const hello = () => 'Hello';
+const ADD_EMPLOYEE_ACTIONCREATOR = employee => ({
+    type: 'ADD_EMPLOYEE',
+    employee
+});
+
+
+store.dispatch(ADD_EMPLOYEE_ACTIONCREATOR({
+    id: 1,
+    name: 'Geetha'
+}));
+
+/////////////////////////////////////////////////////////////////
+//TODO Dispatch
+
+const TODO_ACTION_CREATOR = text => ({
+    type: 'TOGGLE_TODO',
+    text
+});
+store.dispatch(TODO_ACTION_CREATOR({
+    id: 0,
+    text: 'Learn React With Redux',
+    completed: false
+}));
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Redux - React Binding:
+.....................
+>npm install react-redux --save
+
+
+react-redux abstracts communication between view and state layer.
+
+import {
+    createStore,
+    combineReducers
+} from 'redux'
+import {
+    connect,
+    Provider
+} from 'react-redux';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+//Reducer
+const CounterReducer = (counter = 0, action) => {
+    //data manipulation logic: immutable logic
+    switch (action.type) {
+        case 'INCREMENT':
+            return counter + 1;
+            break;
+        case 'DECREMENT':
+            return counter - 1;
+            break;
+        default:
+            return counter
+            break;
+    }
+};
+//store
+const store = createStore(CounterReducer);
+///////////////////////////////////////////////////////////////////////
+//Action Creation
+const INCREMENT_ACTION = {
+    type: 'INCREMENT'
+};
+const DECREEMNT_ACTION = {
+    type: 'DECREMENT'
+};
+///////////////////////////////////////////////////////////////////
+//Redux -React State and dispatch Binding 
+
+function mapStateToProps(counter) {
+    //leftReact:rightRedux
+    return {
+        value: counter // counter-redux state value-react-prop
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onIncrement: () => dispatch(INCREMENT_ACTION)
+    }
+}
+///React Layer
+
+class Counter extends Component {
+    render() {
+        const { value, onIncrement } = this.props;
+    return (
+        <div className="container">
+         <h1>React-Redux App</h1>      
+         <p className="badge badge-secondary">
+                {value}
+         </p>
+         <br />
+         <button onClick={onIncrement}>Increment</button>
+      </div>
+    )
+  }
+}
+///Connecting React Component with Redux
+//connect function adds Redux Features into React Component.
+const CounterApp = connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+//Rendering
+const App = () => (
+    <Provider store={store}>
+       <CounterApp/>    
+    </Provider>
+);
+render(<App />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+import {
+    createStore,
+    combineReducers
+} from 'redux'
+import {
+    connect,
+    Provider
+} from 'react-redux';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+//Reducer
+const CounterReducer = (counter = 0, action) => {
+    //data manipulation logic: immutable logic
+    switch (action.type) {
+        case 'INCREMENT':
+            return counter + 1;
+            break;
+        case 'DECREMENT':
+            return counter - 1;
+            break;
+        default:
+            return counter
+            break;
+    }
+};
+//store
+const store = createStore(CounterReducer);
+///////////////////////////////////////////////////////////////////////
+//Action Creation
+const INCREMENT_ACTION = {
+    type: 'INCREMENT'
+};
+const DECREEMNT_ACTION = {
+    type: 'DECREMENT'
+};
+///////////////////////////////////////////////////////////////////
+//Redux -React State and dispatch Binding 
+
+/* function mapStateToProps(counter) {
+    //leftReact:rightRedux
+    return {
+        value: counter // counter-redux state value-react-prop
+    };
+} */
+const mapStateToProps = counter => ({ counter });
+
+/* function mapDispatchToProps(dispatch) {
+    return {
+        onIncrement: () => dispatch(INCREMENT_ACTION)
+    }
+} */
+const mapDispatchToProps = dispatch => ({ onIncrement: () => dispatch(INCREMENT_ACTION) });
+
+///React Layer
+
+class Counter extends Component {
+    render() {
+        const { value, onIncrement } = this.props;
+    return (
+        <div className="container">
+         <h1>React-Redux App</h1>      
+         <p className="badge badge-secondary">
+                {value}
+         </p>
+         <br />
+         <button onClick={onIncrement}>Increment</button>
+      </div>
+    )
+  }
+}
+///Connecting React Component with Redux
+//connect function adds Redux Features into React Component.
+//const CounterApp = connect(mapStateToProps, mapDispatchToProps)(Counter);
+const CounterApp = connect(mapStateToProps, mapDispatchToProps)(Counter);
+//Rendering
+const App = () => (
+    <Provider store={store}>
+       <CounterApp/>    
+    </Provider>
+);
+render(<App />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Middlewares:
+Middleware is just function.
+
+Normal Flow
+store.dispatch(Action)--------------------->Reducers
+
+Middleware Flow:
+store.dispatch --------Middleware---------->Reducers
+
+Middlware can be chained:
+store.dispatch --------M1--M2--M3--MN---------->Reducers
+
+Middlwares can be used to log request and response flow
+Middlwares can be used to monitor request and response.
+
+Middlwares can be used for async operations.
+
+Middlwares can be custom (developed by us) or third parties
+like thunkMiddleware
+
+reduxThunk is populare  middleware  for async operations.
+
+Middlwares are based on Curry function design pattern.
+
+Redux has defined syntax for any middlware.
+
+In Redux, middleware are functions that must conform to a very specific signature and follow a strict structure:
+
+     var anyMiddleware = function ({ dispatch, getState }) {
+         return function(next) {
+             return function (action) {
+                 // your middleware-specific code goes here
+                 dispatch(action)
+             }
+         }
+     }
+let anyMiddleware = ({dispatch,getState})=>next=>action =>dispatch(action);
+
+applyMiddleware from 'redux'  configures middleware flow.
+
+//*Middleware Binding
+//applyMiddleware will connect middlewares with Store
+///store.dispatch ------Middleware------>reducer
+/**
+ * Async Actions:
+..............
+Let's now imagine a simple asynchronous use-case:
+
+1) User clicks on button "Say Hi in 2 seconds"
+2) When button "A" is clicked, we'd like to show message "Hi" after 2 seconds have elapsed
+3) 2 seconds later, our view is updated with the message "Hi".
+
+ */
+import {
+    createStore,
+    applyMiddleware
+} from 'redux';
+import thunk from 'redux-thunk';
+
+const MessageReducer = (message = '', action) => {
+    switch (action.type) {
+        case 'SAY_HELLO':
+            return action.message;
+            break;
+        default:
+            return message;
+    }
+};
+
+
+/* var thunkMiddleware = function ({ dispatch, getState }) {
+    console.log('Enter thunkMiddleware');
+    return function(next) {
+        // console.log('Function "next" provided:', next);
+        return function (action) {
+            // console.log('Handling action:', action);
+            return typeof action === 'function' ?
+                action(dispatch, getState) :
+                next(action)
+        }
+    }
+} */
+
+const finalCreateStore = applyMiddleware(thunk)(createStore);
+const store = finalCreateStore(MessageReducer);
+
+//ACTION:
+const MESSAGE_ACTION_CREATOR = message => ({
+    type: 'SAY_HELLO',
+    message
+});
+
+/* var asyncSayActionCreator_0 = function (message) {
+    setTimeout(function () {
+        return {
+            type: 'SAY_HELLO',
+            message
+        }
+    }, 2000)
+} */
+const asyncSayActionCreator_1 = function (message) {
+    return function (dispatch) {
+        setTimeout(function () {
+            dispatch({
+                type: 'SAY_HELLO',
+                message
+            })
+        }, 5000)
+    }
+}
+
+store.subscribe(() => {
+    console.log(store.getState());
+ });
+
+store.dispatch(MESSAGE_ACTION_CREATOR('Welcome to Redux'));
+store.dispatch(asyncSayActionCreator_1('Welcome to React'));
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Middlewares:Ajax
+//*Middleware Binding
+//applyMiddleware will connect middlewares with Store
+///store.dispatch ------Middleware------>reducer
+/**
+ * Async Actions:
+..............
+Let's now imagine a simple asynchronous use-case:
+
+1) User clicks on button "Say Hi in 2 seconds"
+2) When button "A" is clicked, we'd like to show message "Hi" after 2 seconds have elapsed
+3) 2 seconds later, our view is updated with the message "Hi".
+
+ */
+import {
+    createStore,
+    applyMiddleware,
+    combineReducers
+} from 'redux';
+
+
+const MessageReducer = (message = '', action) => {
+    switch (action.type) {
+        case 'SAY_HELLO':
+            return action.message;
+            break;
+        default:
+            return message;
+    }
+};
+
+const PhotoReducer = (photos = [], action) => {
+    switch (action.type) {
+       
+        case 'GET_PHOTOS':
+            // Get data from server    
+            return photos.concat(action.photos);
+            break;
+        default:
+            return photos;
+            break;
+    }
+};
+
+
+//Thunk Middleware : custom code not from redux-thunk lib
+const thunkMiddleware = function ({
+    dispatch,
+    getState
+}) {
+    console.log('Enter thunkMiddleware');
+    return function (next) {
+        // console.log('Function "next" provided:', next);
+        return function (action) {
+            // console.log('Handling action:', action);
+            return typeof action === 'function' ?
+                action(dispatch, getState) :
+                next(action)
+        }
+    }
+};
+
+//Teach Store that i have middleware process it.
+const finalCreateStore = applyMiddleware(thunkMiddleware)(createStore);
+const rootReducer = combineReducers({
+    MessageReducer,PhotoReducer
+});
+const store = finalCreateStore(rootReducer);
+
+//ACTION:
+const MESSAGE_ACTION_CREATOR = message => ({
+    type: 'SAY_HELLO',
+    message
+});
+//asyn action : normal actioncreator
+/* const ASYN_ACTIONCREATOR = message=> {
+    setTimeout(function () {
+        return {
+            type: 'SAY_HELLO',
+            message
+        }
+    }, 2000)
+}; */
+/* const ASYN_ACTIONCREATOR = message => {
+    return function (dispatch) {
+        setTimeout(function () {
+            dispatch({
+                type: 'SAY_HELLO',
+                message
+            })
+        }, 5000)
+    }
+}; */
+
+const ASYN_ACTIONCREATOR = message => dispatch => (
+    setTimeout(() => {
+        dispatch({
+            type: 'SAY_HELLO',
+            message
+        })
+    }, 5000));
+
+//Ajax Using Middleware
+
+const GET_PHOTO_ACTIONCREATOR = photos => {
+    return {
+        type: 'GET_PHOTOS',
+        photos
+    }
+}
+const getPhotos = url => dispatch => {
+    //Ajax code will go--you can use any ajax lib
+    fetch(url)
+        .then(res => {
+            return res.json();
+        })
+        .then(photos => {
+            //wait logic here goes:
+            //dispatch willl call reducer when data is available.
+            dispatch(GET_PHOTO_ACTIONCREATOR(photos));
+        });
+};
+
+
+store.subscribe(() => {
+    console.log(store.getState());
+});
+//syn
+store.dispatch(MESSAGE_ACTION_CREATOR('Welcome to Redux'));
+//asyn
+store.dispatch(ASYN_ACTIONCREATOR('Welcome to Redux Asyn'));
+
+//AJAX:
+store.dispatch(getPhotos('https://jsonplaceholder.typicode.com/photos'));
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Routing:
+>Routing done through javascript objects - history,location
+
+location,history - objects facilates client side navigation.
+
+react provides routing lib. which is not part core react.
+
+reactrouterdom is lib which is third party but react recongized
+lib for navigation.
+
+>npm install react-router-dom ---save
+
+Built in Components and objects for routing:
+
+><BrowserRouter>
+><Link>
+><Route>
+
+Objects
+history
+location
+match
+
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+
+///create components
+const Home = () => <h1>Home</h1>;
+const Employee = () => <h1>Employee</h1>;
+const Contact = () => <h1>ContactUs</h1>;
+
+const Topic = ({ match }) => (<div>
+    {/** 
+     const url = `http://example.com/api/topics/${match.params.topicId} `
+
+      fetch(url).then(res=>res.json()).then(topic=>this.setState({
+       topic:topic
+      }))
+   **/}
+   <h1>{match.params.topicId}</h1>
+</div>)
+
+
+
+//Topics Component having submenu
+const Topics = ({ match }) => (<div>
+    <h1>Topics</h1>
+    <ul>
+     <li>
+           
+      <Link to={`${match.url}/react`}>
+        Rendering with React
+      </Link>
+    </li>
+    <li>
+      <Link to={`${match.url}/angular`}>
+      Rendering with Angular
+      </Link>
+    </li>
+    <li>
+      <Link to={`${match.url}/es6`}>
+        Working with es6
+      </Link>
+    </li>
+    
+     </ul>
+     <Route path={`${match.url}/:topicId`} component={Topic} ></Route>   
+</div>);
+
+   
+
+//Navigation
+const App = () => (
+    <div>
+        <BrowserRouter>
+            {/**Nav Bar **/}  
+         <div>   
+         <ul>
+         <li><Link to="/">Home</Link></li>
+         <li><Link to="/contactus">contactus</Link></li>
+         <li><Link to="/employee">Employee</Link></li>
+         <li><Link to="/topics">Topics</Link></li>         
+            </ul>   
+                <hr />   
+                {/**Route Matching **/}        
+                <Route exact path="/" component={Home} />      
+                <Route  path="/contactus" component={Contact} />          
+                <Route   path="/employee" component={Employee}/>          
+                <Route   path="/topics" component={Topics}/>          
+                
+         </div>       
+        </BrowserRouter>    
+    </div>     
+);
+render(<App />, root);
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+Unit Testing:
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import Enzyme,{ shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+});
+
+//Test Component:
+const Header = ()=> (<div>
+  Sapient
+</div>);
+it('Test Header Component', () => {
+  let MockedHeader = shallow(<Header />);
+    //Start Testing on HeaderMock object
+  //Get Inner Text
+  const HeaderText = MockedHeader.text();
+  //Testing
+   //Verify against Client Req.
+  let clientReq = 'Sapient';
+  expect(HeaderText).toEqual(clientReq);
+  
+});
